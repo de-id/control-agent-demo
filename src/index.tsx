@@ -40,7 +40,7 @@ const configs: Partial<Configurations> = {
   auth: getAuth({ token, username, password, clientKey }),
   agentId,
   track,
-  chatMode: ChatMode.OuterControl,
+  chatMode: ChatMode.Off,
   position,
   orientation,
   showChatToggle: false
