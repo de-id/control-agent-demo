@@ -1,16 +1,40 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" style="width: 100%; height: 100%; overflow: hidden">
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="icon" type="image/svg+xml" href="%VITE_FAVICO%" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vite + React + TS</title>
+  <title>Vite + Preact + TS</title>
+  <style>
+    video {
+      display: none !important;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0;
+    }
+
+    #embedded__container__main {
+      width: 480px;
+      height: 840px;
+      background-color: #fff;
+    }
+  </style>
 </head>
 
 <body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.tsx"></script>
+  <div id="embedded__container__main"></div>
+  <script type="module" src="/src/index.tsx" data-name="did-agent" data-mode="fabio"
+    data-target-id="embedded__container__main" data-client-key="%VITE_CLIENT_KEY%" data-agent-id="%VITE_AGENT_ID%"
+    data-position="right" data-orientation="horizontal" data-monitor="false" data-track="false">
+    </script>
 </body>
 
 </html>
