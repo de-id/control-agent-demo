@@ -1,69 +1,45 @@
-# React + TypeScript + Vite
+# Control Agent Demo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This demo utilized D-ID's `@d-id/agent-client` package.
 
-Currently, two official plugins are available:
+## Run me
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```sh
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+This will open a window under [http://localhost:5173](http://localhost:5173)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Configurations
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+This project comes with a default agent.
+In order to change it modify the following value in [.env](./.env):
+
+- VITE_CLIENT_KEY
+- VITE_AGENT_ID
+
+## Callbacks and Functions
+
+### Callbacks
+
+`@d-id/agent-client` exposes several callbacks and functions.
+
+Callbacks can be found and modified under [./src/index.tsx](./src/index.tsx):
+
+- onStreamCreated - event containing information regarding the connection to the agent once its created
+- onSttEnd - event containing stt result (after uses speaks)
+
+### Functions
+
+Functions represent internal logic that can be called from a wrapper code (like in this repo).  
+All function calls will look like the following: `window.DID_AGENTS_API.functions.[function-name]`.  
+The following is a list of functions:
+
+```ts
+speak: (type: 'text', 'input': '[your-text-here]') => void;
+toggleMicState: (mute?: boolean) => void;
 ```
+
+- speak - make the agent say something.
+- toggleMicState - mute or unmute the user's mic (toggle if no new state is provided)

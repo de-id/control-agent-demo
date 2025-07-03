@@ -30,8 +30,8 @@ const props: Props = {
   didApiUrl: didApiUrl!,
   monitor,
   callbacks: {
-    onSttEnd: event => console.log("User speak result: ", event.result.text),
-    onStreamCreated: event => console.log("Stream created: ", event)
+    onStreamCreated: event => console.log("Stream created: ", event),
+    onSttEnd: event => console.log("User speak result: ", event.result.text)
   }
 };
 const configs: Partial<Configurations> = {
