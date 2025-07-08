@@ -43,7 +43,8 @@ const configs: Partial<Configurations> = {
   chatMode: ChatMode.Off,
   position,
   orientation,
-  showChatToggle: false
+  showChatToggle: false,
+  sttProvider: "native"
 };
 
 init({ ...configs, ...props });
