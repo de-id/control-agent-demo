@@ -1,6 +1,7 @@
 import { ChatMode } from "@d-id/client-sdk";
 import type { Configurations, Props } from "@d-id/agent-client";
 import { getAuth, init, testMode } from "@d-id/agent-client";
+import { startButtonCreation } from "./buttonManager";
 
 const scriptTag = document.querySelector('script[data-name="did-agent"]')!;
 
@@ -30,10 +31,14 @@ const props: Props = {
   didApiUrl: didApiUrl!,
   monitor,
   callbacks: {
-    onStreamCreated: event => console.log("Stream created: ", event),
-    onSttEnd: event => console.log("User speak result: ", event.result.text)
-  }
+    onStreamCreated: (event) => {
+      console.log("Stream created: ", event);
+      startButtonCreation();
+    },
+    onSttEnd: (event) => console.log("User speak result: ", event.result.text),
+  },
 };
+
 const configs: Partial<Configurations> = {
   mode,
   targetElement: target,
