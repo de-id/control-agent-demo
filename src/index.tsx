@@ -44,7 +44,6 @@ const configs: Partial<Configurations> = {
   position,
   orientation,
   showChatToggle: false,
-  sttProvider: "native"
 };
 
 init({ ...configs, ...props });
