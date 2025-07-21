@@ -39,7 +39,9 @@ The following is a list of functions:
 ```ts
 speak: (type: 'text', 'input': '[your-text-here]') => void;
 toggleMicState: (mute?: boolean) => void;
+interrupt: ({ type }: { type: 'text' | 'audio' | 'click' }) => void;
 ```
 
 - speak - make the agent say something.
 - toggleMicState - mute or unmute the user's mic (toggle if no new state is provided)
+- interrupt - interrupt the agent's current video stream
